@@ -87,6 +87,8 @@ dotnet test MyShop.Tests
 dotnet test MyShop.Tests --collect:"XPlat Code Coverage"
 ```
 
+![Run Unit Tests](img/how-to-run-unit-tests.jpg)
+
 ## 🔐 Tài khoản mặc định
 
 | Trường       | Giá trị           |
@@ -229,6 +231,8 @@ Tính năng:
 openssl rand -base64 32
 ```
 
+![Generate Secret Key](img/how-to-generate-secret-key.jpg)
+
 - Sau đó paste vào phần "SecretKey" bên dưới:
 
 ```json
@@ -264,10 +268,10 @@ openssl rand -base64 32
 - Kiểm tra appsettings.json có đúng API base URL
 - Kiểm tra firewall/proxy settings
 
-## 📄 Giấy phép
+## Giấy phép
 
 Dự án này được tạo cho mục đích học tập.
 
-## 👨‍💻 Tác giả
+## Tác giả
 
 Xây dựng bằng ASP.NET Core 9.0 theo mô hình 3-tier architecture.
