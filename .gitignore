@@ -1,0 +1,126 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options directory
+.vs/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Rider
+.idea/
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015/2017 cache/options
+.vs/
+
+# Diagnostic files
+*.log
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Test Results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Entity Framework Core
+migrations/
+
+# Database files
+*.mdf
+*.ldf
+*.ndf
+
+# Local database
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Package files
+.sass-cache/
+npm-debug.log
+yarn-error.log
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build artifacts
+dist/
+build/
+
+# Temp files
+*.tmp
+*.temp
+tmp/
+
+# Mac
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Desktop.ini
+
+# JetBrains
+*.iws
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled files
+*.o
+*.a
+*.so
+
+# Output
+output/
+out/

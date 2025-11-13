@@ -1,0 +1,56 @@
+@using MyShop.Core.DTOs
+@model CreateCategoryDto
+
+@{
+    ViewData["Title"] = "Create Category";
+    var categories = (List<CategoryDto>)ViewData["Categories"]!;
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Create New Category</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">Category Name</label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter category name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ParentId" class="form-label">Parent Category</label>
+                            <select asp-for="ParentId" class="form-select">
+                                <option value="">-- None (Root Category) --</option>
+                                @if (categories != null && categories.Any())
+                                {
+                                    @foreach (var category in categories)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="OrderIndex" class="form-label">Order Index</label>
+                            <input asp-for="OrderIndex" type="number" class="form-control" placeholder="Enter order index" />
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                            <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

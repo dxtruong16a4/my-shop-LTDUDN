@@ -1,0 +1,112 @@
+@using MyShop.Core.DTOs
+@model List<ProductDto>
+
+@{
+    ViewData["Title"] = "Search Products";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h2>Search Products</h2>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form asp-action="Search" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="keyword" placeholder="Search by product name..." 
+                           value="@ViewData["Keyword"]" />
+                    <button class="btn btn-primary" type="submit">Search</button>
+                    @if (!string.IsNullOrEmpty(ViewData["Keyword"]?.ToString()))
+                    {
+                        <a href="@Url.Action("Search")" class="btn btn-secondary">Clear</a>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (!Model.Any() && !string.IsNullOrEmpty(ViewData["Keyword"]?.ToString()))
+    {
+        <div class="alert alert-info" role="alert">
+            No products found matching "<strong>@ViewData["Keyword"]</strong>"
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text text-muted">@(product.Description?.Length > 100 ? product.Description.Substring(0, 100) + "..." : product.Description)</p>
+                            <div class="mb-2">
+                                <span class="badge bg-info">Group: @product.GroupId</span>
+                            </div>
+                            <div class="mb-3">
+                                <strong class="text-primary">@product.Price.ToString("C")</strong>
+                                @if (product.Stock > 0)
+                                {
+                                    <span class="badge bg-success ms-2">@product.Stock in stock</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger ms-2">Out of Stock</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <small class="text-muted">Added: @product.CreatedAt.ToString("yyyy-MM-dd")</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Pagination -->
+        @if ((int?)ViewData["TotalPages"] > 1)
+        {
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    @if ((bool)ViewData["HasPreviousPage"]!)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Search", new { keyword = ViewData["Keyword"], pageNumber = (int)ViewData["PageNumber"]! - 1 })">Previous</a>
+                        </li>
+                    }
+
+                    @for (int i = 1; i <= (int)ViewData["TotalPages"]!; i++)
+                    {
+                        @if (i == (int)ViewData["PageNumber"]!)
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">@i</span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Search", new { keyword = ViewData["Keyword"], pageNumber = i })">@i</a>
+                            </li>
+                        }
+                    }
+
+                    @if ((bool)ViewData["HasNextPage"]!)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Search", new { keyword = ViewData["Keyword"], pageNumber = (int)ViewData["PageNumber"]! + 1 })">Next</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            <p class="text-center text-muted">
+                Page @ViewData["PageNumber"] of @ViewData["TotalPages"] | Total: @ViewData["TotalItems"] results
+            </p>
+        }
+    }
+</div>
