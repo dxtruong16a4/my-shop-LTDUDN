@@ -6,11 +6,11 @@ Hệ thống thương mại điện tử 3 tầng được xây dựng bằng AS
 
 ## Tổng quan dự án
 
-**Tên:** MyShop
-**Mục tiêu:** Xây dựng hệ thống thương mại điện tử đơn giản với 3 tầng (Core, Web MVC, REST API).
-**Công nghệ:** ASP.NET Core 9.0, EF Core, JWT, AutoMapper, Swagger.
-**Cơ sở dữ liệu:** SQL Server
-**Mô hình:** 3-tier architecture + Repository + Service pattern.
+- **Tên:** MyShop
+- **Mục tiêu:** Xây dựng hệ thống thương mại điện tử đơn giản với 3 tầng (Core, Web MVC, REST API).
+- **Công nghệ:** ASP.NET Core 9.0, EF Core, JWT, AutoMapper, Swagger.
+- **Cơ sở dữ liệu:** SQL Server
+- **Mô hình:** 3-tier architecture + Repository + Service pattern.
 
 ## Công nghệ sử dụng
 
