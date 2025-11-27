@@ -87,7 +87,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret)),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret!)),
             ValidateIssuer = true,
             ValidIssuer = jwtIssuer,
             ValidateAudience = true,
@@ -116,15 +116,15 @@ if (app.Environment.IsDevelopment())
 }
 
 // Seed admin user and mock data on startup
-using (var scope = app.Services.CreateScope())
-{
-    var seedData = scope.ServiceProvider.GetRequiredService<SeedData>();
-    await seedData.SeedAdminAsync();
+// using (var scope = app.Services.CreateScope())
+// {
+//     var seedData = scope.ServiceProvider.GetRequiredService<SeedData>();
+//     await seedData.SeedAdminAsync();
 
-    var seedDataService = scope.ServiceProvider.GetRequiredService<ISeedDataService>();
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    await seedDataService.SeedAsync(dbContext);
-}
+//     var seedDataService = scope.ServiceProvider.GetRequiredService<ISeedDataService>();
+//     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+//     await seedDataService.SeedAsync(dbContext);
+// }
 
 app.UseHttpsRedirection();
 app.UseAuthentication();

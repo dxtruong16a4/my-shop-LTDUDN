@@ -4,7 +4,7 @@ namespace MyShop.Core.Services
 {
     public interface IProductService
     {
-        Task<ProductDto> GetProductByIdAsync(int id);
+        Task<ProductDto?> GetProductByIdAsync(int id);
         Task<IEnumerable<ProductDto>> GetAllProductsAsync();
         Task<PaginatedResult<ProductDto>> GetProductsPaginatedAsync(int pageNumber, int pageSize);
         Task<IEnumerable<ProductDto>> GetProductsByGroupAsync(int groupId);

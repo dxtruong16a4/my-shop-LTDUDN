@@ -69,14 +69,14 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 // Seed admin user and mock data on startup
-using (var scope = app.Services.CreateScope())
-{
-    var seedData = scope.ServiceProvider.GetRequiredService<SeedData>();
-    await seedData.SeedAdminAsync();
+// using (var scope = app.Services.CreateScope())
+// {
+//     var seedData = scope.ServiceProvider.GetRequiredService<SeedData>();
+//     await seedData.SeedAdminAsync();
 
-    var seedDataService = scope.ServiceProvider.GetRequiredService<ISeedDataService>();
-    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    await seedDataService.SeedAsync(dbContext);
-}
+//     var seedDataService = scope.ServiceProvider.GetRequiredService<ISeedDataService>();
+//     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+//     await seedDataService.SeedAsync(dbContext);
+// }
 
 app.Run();

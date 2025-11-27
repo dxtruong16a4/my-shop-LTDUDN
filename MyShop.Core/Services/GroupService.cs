@@ -17,7 +17,7 @@ namespace MyShop.Core.Services
             _mapper = mapper;
         }
 
-        public async Task<GroupDto> GetGroupByIdAsync(int id)
+        public async Task<GroupDto?> GetGroupByIdAsync(int id)
         {
             var group = await _repository.GetByIdAsync(id);
             return group != null ? _mapper.Map<GroupDto>(group) : null;
@@ -54,7 +54,7 @@ namespace MyShop.Core.Services
         {
             var group = await _repository.GetByIdAsync(id);
             if (group == null)
-                return null;
+                return null!;
 
             _mapper.Map(dto, group);
             var updatedGroup = await _repository.UpdateAsync(group);

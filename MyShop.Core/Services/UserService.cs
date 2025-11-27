@@ -18,7 +18,7 @@ namespace MyShop.Core.Services
             _mapper = mapper;
         }
 
-        public async Task<UserDto> GetUserByIdAsync(Guid id)
+        public async Task<UserDto?> GetUserByIdAsync(Guid id)
         {
             var user = await _repository.GetByIdAsync(id);
             return user != null ? _mapper.Map<UserDto>(user) : null;
@@ -47,7 +47,7 @@ namespace MyShop.Core.Services
             return _mapper.Map<UserDto>(createdUser);
         }
 
-        public async Task<UserDto> UpdateUserAsync(Guid id, UpdateUserDto dto)
+        public async Task<UserDto?> UpdateUserAsync(Guid id, UpdateUserDto dto)
         {
             var user = await _repository.GetByIdAsync(id);
             if (user == null)
@@ -63,14 +63,14 @@ namespace MyShop.Core.Services
             return await _repository.DeleteAsync(id);
         }
 
-        public async Task<UserDto> GetUserByUsernameAsync(string username)
+        public async Task<UserDto?> GetUserByUsernameAsync(string username)
         {
             var users = await _repository.GetAllAsync();
             var user = users.FirstOrDefault(u => u.Username == username);
             return user != null ? _mapper.Map<UserDto>(user) : null;
         }
 
-        public async Task<User> GetUserEntityByUsernameAsync(string username)
+        public async Task<User?> GetUserEntityByUsernameAsync(string username)
         {
             var users = await _repository.GetAllAsync();
             return users.FirstOrDefault(u => u.Username == username);

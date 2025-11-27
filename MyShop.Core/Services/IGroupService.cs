@@ -4,7 +4,7 @@ namespace MyShop.Core.Services
 {
     public interface IGroupService
     {
-        Task<GroupDto> GetGroupByIdAsync(int id);
+        Task<GroupDto?> GetGroupByIdAsync(int id);
         Task<IEnumerable<GroupDto>> GetAllGroupsAsync();
         Task<PaginatedResult<GroupDto>> GetGroupsPaginatedAsync(int pageNumber, int pageSize);
         Task<IEnumerable<GroupDto>> GetGroupsByCategoryAsync(int categoryId);

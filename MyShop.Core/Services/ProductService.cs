@@ -17,7 +17,7 @@ namespace MyShop.Core.Services
             _mapper = mapper;
         }
 
-        public async Task<ProductDto> GetProductByIdAsync(int id)
+        public async Task<ProductDto?> GetProductByIdAsync(int id)
         {
             var product = await _repository.GetByIdAsync(id);
             return product != null ? _mapper.Map<ProductDto>(product) : null;
@@ -47,8 +47,8 @@ namespace MyShop.Core.Services
         {
             var products = await _repository.GetAllAsync();
             var searched = products.Where(p => 
-                p.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
-                p.Description.Contains(keyword, StringComparison.OrdinalIgnoreCase)
+                p.Name!.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                p.Description!.Contains(keyword, StringComparison.OrdinalIgnoreCase)
             ).ToList();
             return _mapper.Map<IEnumerable<ProductDto>>(searched);
         }
@@ -57,8 +57,8 @@ namespace MyShop.Core.Services
         {
             var products = await _repository.GetAllAsync();
             var searched = products.Where(p => 
-                p.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
-                p.Description.Contains(keyword, StringComparison.OrdinalIgnoreCase)
+                p.Name!.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                p.Description!.Contains(keyword, StringComparison.OrdinalIgnoreCase)
             ).ToList();
             var productDtos = _mapper.Map<IEnumerable<ProductDto>>(searched);
             return productDtos.ToPaginated(pageNumber, pageSize);
@@ -75,7 +75,7 @@ namespace MyShop.Core.Services
         {
             var product = await _repository.GetByIdAsync(id);
             if (product == null)
-                return null;
+                return null!;
 
             _mapper.Map(dto, product);
             var updatedProduct = await _repository.UpdateAsync(product);

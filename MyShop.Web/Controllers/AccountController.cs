@@ -39,8 +39,8 @@ namespace MyShop.Web.Controllers
 
             try
             {
-                var userEntity = await _userService.GetUserEntityByUsernameAsync(model.Username);
-                if (userEntity == null || !_passwordHelper.VerifyPassword(model.Password, userEntity.PasswordHash))
+                var userEntity = await _userService.GetUserEntityByUsernameAsync(model.Username!);
+                if (userEntity == null || !_passwordHelper.VerifyPassword(model.Password!, userEntity.PasswordHash!))
                 {
                     ModelState.AddModelError("", "Invalid username or password");
                     return View(model);
@@ -56,8 +56,8 @@ namespace MyShop.Web.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, userEntity.Id.ToString()),
-                    new Claim(ClaimTypes.Name, userEntity.Username),
-                    new Claim(ClaimTypes.Email, userEntity.Email),
+                    new Claim(ClaimTypes.Name, userEntity.Username!),
+                    new Claim(ClaimTypes.Email, userEntity.Email!),
                     new Claim(ClaimTypes.Role, userEntity.Role.ToString())
                 };
 
@@ -110,8 +110,8 @@ namespace MyShop.Web.Controllers
 
     public class LoginViewModel
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
         public bool RememberMe { get; set; }
     }
 }

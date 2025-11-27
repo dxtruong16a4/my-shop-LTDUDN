@@ -4,7 +4,7 @@ namespace MyShop.Core.Services
 {
     public interface ICategoryService
     {
-        Task<CategoryDto> GetCategoryByIdAsync(int id);
+        Task<CategoryDto?> GetCategoryByIdAsync(int id);
         Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync();
         Task<PaginatedResult<CategoryDto>> GetCategoriesPaginatedAsync(int pageNumber, int pageSize);
         Task<IEnumerable<CategoryDto>> GetRootCategoriesAsync();

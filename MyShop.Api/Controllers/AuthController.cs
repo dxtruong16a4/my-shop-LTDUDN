@@ -46,8 +46,8 @@ namespace MyShop.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var userEntity = await _userService.GetUserEntityByUsernameAsync(dto.Username);
-            if (userEntity == null || !_passwordHelper.VerifyPassword(dto.Password, userEntity.PasswordHash))
+            var userEntity = await _userService.GetUserEntityByUsernameAsync(dto.Username!);
+            if (userEntity == null || !_passwordHelper.VerifyPassword(dto.Password!, userEntity.PasswordHash!))
                 return Unauthorized(new { message = "Invalid username or password" });
 
             if (!userEntity.IsActive)
@@ -55,13 +55,13 @@ namespace MyShop.Api.Controllers
 
             var token = _jwtService.GenerateToken(
                 userEntity,
-                _configuration["Jwt:Secret"],
-                _configuration["Jwt:Issuer"],
-                _configuration["Jwt:Audience"],
+                _configuration["Jwt:Secret"]!,
+                _configuration["Jwt:Issuer"]!,
+                _configuration["Jwt:Audience"]!,
                 int.Parse(_configuration["Jwt:ExpiryMinutes"] ?? "60")
             );
 
-            var userDto = await _userService.GetUserByUsernameAsync(dto.Username);
+            var userDto = await _userService.GetUserByUsernameAsync(dto.Username!);
 
             return Ok(new
             {
@@ -86,7 +86,7 @@ namespace MyShop.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var existingUser = await _userService.GetUserByUsernameAsync(dto.Username);
+            var existingUser = await _userService.GetUserByUsernameAsync(dto.Username!);
             if (existingUser != null)
                 return BadRequest(new { message = "Username already exists" });
 
@@ -101,8 +101,8 @@ namespace MyShop.Api.Controllers
 
     public class LoginDto
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
     }
 }
 
