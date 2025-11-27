@@ -53,16 +53,16 @@ dotnet ef database update --project MyShop.Api
 cd MyShop.Api
 dotnet run
 ```
-✅ Swagger UI: http://localhost:5109/swagger
+- Swagger UI: http://localhost:5109/swagger
 
 **Terminal 2 - Chạy MVC Web (port 5045)**
 ```bash
 cd MyShop.Web
 dotnet run
 ```
-✅ Trang chủ: http://localhost:5045
-✅ Admin Dashboard: http://localhost:5045/Users
-✅ Tìm kiếm sản phẩm: http://localhost:5045/Products
+- Trang chủ: http://localhost:5045  
+- Admin Dashboard: http://localhost:5045/Users  
+- Tìm kiếm sản phẩm: http://localhost:5045/Products  
 
 #### **Cách 2: Chạy cả 2 tầng từ root directory**
 ```bash
@@ -89,7 +89,7 @@ dotnet test MyShop.Tests --collect:"XPlat Code Coverage"
 
 ![Run Unit Tests](img/how-to-run-unit-tests.jpg)
 
-## 🔐 Tài khoản mặc định
+## Tài khoản mặc định
 
 | Trường       | Giá trị           |
 | ------------ | ----------------- |
@@ -186,27 +186,27 @@ http://localhost:5001/swagger/index.html
 ```
 
 Tính năng:
-- ✅ Xem tất cả endpoints
-- ✅ Kiểm thử trực tiếp trong Swagger UI
-- ✅ Xác thực JWT (nút "Authorize")
-- ✅ Xem response schema chi tiết
+- Xem tất cả endpoints
+- Kiểm thử trực tiếp trong Swagger UI
+- Xác thực JWT (nút "Authorize")
+- Xem response schema chi tiết
 
 ## Bảo mật
 
 ### Password
-- ✅ Được mã hóa bằng BCrypt
-- ✅ Không bao giờ lưu dưới dạng plaintext
-- ✅ Hash độc lập, không thể reverse
+- Được mã hóa bằng BCrypt
+- Không bao giờ lưu dưới dạng plaintext
+- Hash độc lập, không thể reverse
 
 ### JWT Token
-- ✅ Chứa UserId, Username, Email, Role
-- ✅ Ký với secret key từ `appsettings.json`
-- ✅ Hết hạn sau 24 giờ
+- Chứa UserId, Username, Email, Role
+- Ký với secret key từ `appsettings.json`
+- Hết hạn sau 24 giờ
 
 ### Authorization
-- ✅ `[Authorize]` - Chỉ người dùng đăng nhập
-- ✅ `[Authorize(Roles="Admin")]` - Chỉ admin
-- ✅ `[AllowAnonymous]` - Công khai (search products)
+- `[Authorize]` - Chỉ người dùng đăng nhập
+- `[Authorize(Roles="Admin")]` - Chỉ admin
+- `[AllowAnonymous]` - Công khai (search products)
 
 ## File cấu hình quan trọng
 
